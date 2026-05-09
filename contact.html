@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — HELIA INDONESIA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">HELIA</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="shop.html" class="nav-icon-btn" title="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count">0</span>
+        </a>
+        <a href="login.html" class="nav-icon-btn" title="Account" id="profileBtn">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <p class="section-label">HUBUNGI KAMI</p>
+    <h1 class="contact-hero-title">Ada yang Ingin<br /><em>Kamu Tanyakan?</em></h1>
+    <p class="contact-hero-sub">Kami senang mendengar dari kamu — pertanyaan, kolaborasi, atau sekadar say hi.</p>
+  </section>
+
+  <!-- CONTACT MAIN -->
+  <section class="contact-main">
+    <div class="contact-form-wrap">
+      <h2 class="contact-form-title">Kirim Pesan</h2>
+      <div class="form-group">
+        <label for="name">Nama Lengkap</label>
+        <input type="text" id="name" placeholder="Nama kamu..." />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="contoh@email.com" />
+      </div>
+      <div class="form-group">
+        <label for="subject">Subjek</label>
+        <input type="text" id="subject" placeholder="Topik pesanmu..." />
+      </div>
+      <div class="form-group">
+        <label for="message">Pesan</label>
+        <textarea id="message" rows="5" placeholder="Tulis pesanmu di sini..."></textarea>
+      </div>
+      <button class="btn-primary" onclick="handleSubmit()">KIRIM PESAN</button>
+      <p class="form-note" id="formNote"></p>
+    </div>
+
+    <div class="contact-info-wrap">
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <div><h4>Email</h4><p>hello@heliaindonesia.com</p><p>support@heliaindonesia.com</p></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+        <div><h4>WhatsApp</h4><p>+62 812-3456-7890</p><p class="info-note">Senin – Sabtu, 08.00 – 18.00 WIB</p></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div><h4>Lokasi</h4><p>Makassar, Sulawesi Selatan</p><p>Indonesia</p></div>
+      </div>
+      <div class="social-section">
+        <h4>Ikuti Kami</h4>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <p class="section-label">FAQ</p>
+    <h2 class="faq-title">Pertanyaan yang Sering Diajukan</h2>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Berapa lama proses pengiriman?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><p>Pengiriman reguler 2–5 hari kerja. Tersedia express untuk hari yang sama khusus Makassar.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Apakah bisa melakukan penukaran ukuran?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><p>Bisa, dalam 7 hari setelah barang diterima, syarat belum dipakai dan tag masih utuh.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Metode pembayaran apa saja yang tersedia?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><p>Transfer bank (BCA, Mandiri, BNI), dompet digital (GoPay, OVO, Dana), dan kartu kredit/debit.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Bagaimana cara melacak pesanan?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><p>Nomor resi dikirim via email dan WhatsApp setelah pesanan diproses.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">HELIA</div>
+          <p class="footer-desc">Helia Indonesia — fashion berbasis mood untuk ekspresi sehari-hari.</p>
+          <div class="footer-socials">
+            <a href="#" title="Instagram">ig</a>
+            <a href="#" title="Facebook">fb</a>
+            <a href="#" title="TikTok">tk</a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Navigasi</h5><ul><li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Kategori</h5><ul><li><a href="shop.html">Cozy Mood</a></li><li><a href="shop.html">Bold Mood</a></li><li><a href="shop.html">Calm Mood</a></li><li><a href="shop.html">New Arrival</a></li></ul></div>
+        <div class="footer-col">
+          <h5>Newsletter</h5>
+          <p style="font-size:12px; color:rgba(245,240,232,0.6); margin-bottom:1rem;">Update koleksi & promo eksklusif.</p>
+          <div class="footer-newsletter-input"><input type="email" placeholder="Email kamu..." /><button>Daftar</button></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Helia Indonesia. Semua hak dilindungi.</span>
+        <span>Kelompok 1 — Web Design UI/UX</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    function toggleFaq(item) {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+    function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const note = document.getElementById('formNote');
+      if (!name || !email || !message) {
+        note.textContent = 'Mohon lengkapi nama, email, dan pesan terlebih dahulu.';
+        note.style.color = '#c0392b';
+        return;
+      }
+      note.textContent = '✓ Pesan berhasil dikirim! Kami akan segera menghubungimu.';
+      note.style.color = '#5a7a5a';
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('subject').value = '';
+      document.getElementById('message').value = '';
+    }
+  </script>
+</body>
+</html>

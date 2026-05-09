@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HELIA INDONESIA — Wear What You Feel</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HOME PAGE STYLES ===== */
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--nav-height));
+      background-color: var(--color-cream);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1400&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.25;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-warm-brown);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      color: var(--color-dark-brown);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--color-muted);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--color-muted);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background-color: var(--color-sand);
+      animation: scrollAnim 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollAnim {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
+      50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    }
+
+    /* Mood Categories */
+    .mood-strip {
+      background-color: var(--color-dark-brown);
+      padding: 1rem 0;
+      overflow: hidden;
+    }
+
+    .mood-strip-inner {
+      display: flex;
+      gap: 3rem;
+      animation: ticker 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .mood-strip-item {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-sand);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mood-strip-item::after {
+      content: '✦';
+      font-size: 8px;
+      color: var(--color-warm-brown);
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Shop Collection */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Featured / Split Section */
+    .featured-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background-color: var(--color-cream);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .featured-split-image {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+
+    .featured-split-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .featured-split:hover .featured-split-image img {
+      transform: scale(1.03);
+    }
+
+    .featured-split-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-split-content .section-label {
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-split-content h2 {
+      margin-bottom: 1rem;
+    }
+
+    .featured-split-content p {
+      margin-bottom: 1.5rem;
+      font-size: 14px;
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      width: fit-content;
+      margin-bottom: 1.5rem;
+    }
+
+    .qty-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--color-muted);
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background-color: var(--color-cream);
+      color: var(--color-dark-brown);
+    }
+
+    .qty-num {
+      width: 40px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      border-left: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      padding: 0.4rem 0;
+    }
+
+    /* Newsletter */
+    .newsletter-section {
+      background-color: var(--color-beige);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+      margin: 1.5rem auto 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      border: none;
+      padding: 0.85rem 1.2rem;
+      font-size: 14px;
+      color: var(--color-black);
+      outline: none;
+    }
+
+    .newsletter-form button {
+      padding: 0.85rem 1.5rem;
+      background-color: var(--color-dark-brown);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+      background-color: var(--color-warm-brown);
+    }
+
+    /* USP Strip */
+    .usp-strip {
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .usp-item {
+      padding: 2rem;
+      text-align: center;
+      border-right: 1px solid var(--color-border);
+    }
+
+    .usp-item:last-child { border-right: none; }
+
+    .usp-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 0.75rem;
+      color: var(--color-warm-brown);
+    }
+
+    .usp-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .usp-item h4 {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--color-dark-brown);
+      margin-bottom: 0.3rem;
+    }
+
+    .usp-item p {
+      font-size: 12px;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--color-cream);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+    }
+
+    .testimonial-card p {
+      font-size: 14px;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: var(--color-dark-brown);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--color-sand);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-dark-brown);
+    }
+
+    .testimonial-role {
+      font-size: 11px;
+      color: var(--color-muted);
+    }
+
+    /* Responsive Home */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .featured-split { grid-template-columns: 1fr; }
+      .featured-split-image { aspect-ratio: 16/9; }
+      .usp-grid { grid-template-columns: repeat(2, 1fr); }
+      .usp-item { border-right: none; border-bottom: 1px solid var(--color-border); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">HELIA</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="shop.html" class="nav-icon-btn" title="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count" id="cartCount">2</span>
+        </a>
+        <!-- Profile icon — href dikelola oleh script di bawah -->
+        <a href="login.html" class="nav-icon-btn" title="Account" id="profileBtn">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Welcome to Helia Indonesia</p>
+        <h1>Wear What<br>You Feel</h1>
+        <p class="hero-sub">Koleksi fashion yang dirancang mengikuti ritme hatimu — dari pagi yang tenang hingga malam yang penuh ekspresi.</p>
+        <div class="hero-cta">
+          <a href="shop.html" class="btn btn-primary">Jelajahi Koleksi</a>
+          <a href="about.html" class="btn btn-outline">Tentang Kami</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ===== MOOD TICKER ===== -->
+  <div class="mood-strip">
+    <div class="mood-strip-inner">
+      <span class="mood-strip-item">Cozy Mood</span>
+      <span class="mood-strip-item">Bold Mood</span>
+      <span class="mood-strip-item">Calm Mood</span>
+      <span class="mood-strip-item">Soft Mood</span>
+      <span class="mood-strip-item">Glam Mood</span>
+      <span class="mood-strip-item">Casual Mood</span>
+      <span class="mood-strip-item">Cozy Mood</span>
+      <span class="mood-strip-item">Bold Mood</span>
+      <span class="mood-strip-item">Calm Mood</span>
+      <span class="mood-strip-item">Soft Mood</span>
+      <span class="mood-strip-item">Glam Mood</span>
+      <span class="mood-strip-item">Casual Mood</span>
+    </div>
+  </div>
+
+  <!-- ===== SHOP OUR COLLECTION ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Koleksi Terbaru</span>
+        <h2>Shop Our Collection</h2>
+        <div class="divider"></div>
+        <p>Setiap potongan dipilih dengan cermat untuk memastikan kamu tampil percaya diri setiap hari.</p>
+      </div>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="images/cozy-wide-leg-pants.png" alt="Cozy Wide Leg Pants" loading="lazy" />
+            <span class="product-mood-badge">Cozy</span>
+            <div class="product-card-overlay">
+              <a href="product-detail.html?id=p1" class="btn btn-cream">Lihat Detail</a>
+              <button onclick="addToCart('p1', 'Cozy Wide Leg Pants', 109000, 'images/cozy-wide-leg-pants.png', 'cozy')" class="btn btn-primary" style="cursor:pointer; border:none; outline:none; font-family:inherit;">+ Keranjang</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <div class="stars">★★★★★</div>
+            <h4><a href="product-detail.html?id=p1">Cozy Wide Leg Pants</a></h4>
+            <span class="price">Rp109.000</span>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="https://images.unsplash.com/photo-1551489186-cf8726f514f8?w=500&auto=format&fit=crop&q=80" alt="Flare Jogger Pants" loading="lazy" />
+            <span class="product-mood-badge">Cozy</span>
+            <div class="product-card-overlay">
+              <a href="product-detail.html?id=p2" class="btn btn-cream">Lihat Detail</a>
+              <button onclick="addToCart('p2', 'Flare Jogger Pants', 99000, 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?w=500&auto=format&fit=crop&q=80', 'cozy')" class="btn btn-primary" style="cursor:pointer; border:none; outline:none; font-family:inherit;">+ Keranjang</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <div class="stars">★★★★★</div>
+            <h4><a href="product-detail.html?id=p2">Flare Jogger Pants</a></h4>
+            <span class="price">Rp99.000</span>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=80" alt="Oversize Zip Pocket" loading="lazy" />
+            <span class="product-mood-badge">Bold</span>
+            <div class="product-card-overlay">
+              <a href="product-detail.html?id=p3" class="btn btn-cream">Lihat Detail</a>
+              <button onclick="addToCart('p3', 'Oversize Zip Pocket', 119000, 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=80', 'bold')" class="btn btn-primary" style="cursor:pointer; border:none; outline:none; font-family:inherit;">+ Keranjang</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <div class="stars">★★★★☆</div>
+            <h4><a href="product-detail.html?id=p3">Oversize Zip Pocket</a></h4>
+            <span class="price">Rp119.000</span>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="https://images.unsplash.com/photo-1536243298747-ea8874136d64?w=500&auto=format&fit=crop&q=80" alt="Sailor Collar Knit" loading="lazy" />
+            <span class="product-mood-badge">Soft</span>
+            <div class="product-card-overlay">
+              <a href="product-detail.html?id=p4" class="btn btn-cream">Lihat Detail</a>
+              <button onclick="addToCart('p4', 'Sailor Collar Knit', 139000, 'https://images.unsplash.com/photo-1536243298747-ea8874136d64?w=500&auto=format&fit=crop&q=80', 'soft')" class="btn btn-primary" style="cursor:pointer; border:none; outline:none; font-family:inherit;">+ Keranjang</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <div class="stars">★★★★★</div>
+            <h4><a href="product-detail.html?id=p4">Sailor Collar Knit</a></h4>
+            <span class="price">Rp139.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top: 3rem;">
+        <a href="shop.html" class="btn btn-outline">Lihat Semua Produk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PRODUCT ===== -->
+  <section class="section" style="background-color: var(--color-cream);">
+    <div class="container">
+      <div class="featured-split">
+        <div class="featured-split-image">
+          <img src="images/cozy-wide-leg-pants.png" alt="Cozy Wide Leg Pants" />
+        </div>
+        <div class="featured-split-content">
+          <span class="section-label">Produk Pilihan</span>
+          <h2>Cozy Wide Leg Pants</h2>
+          <div class="stars" style="text-align:left; margin-bottom: 0.75rem;">★★★★★ <span style="font-size:12px; color: var(--color-muted); margin-left:6px;">54 ulasan</span></div>
+          <p style="font-size:14px; line-height:1.8; margin-bottom: 1rem;">Celana wide leg dengan bahan lembut yang memanjakan, potongan relaxed yang mudah dipadukan, dan detail minimalis yang tetap elegan.</p>
+          <p style="font-size: 1.4rem; font-family: var(--font-heading); color: var(--color-warm-brown); margin-bottom: 1.5rem;">Rp109.000</p>
+
+          <div style="margin-bottom: 1.2rem;">
+            <p style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-muted); margin-bottom:0.5rem;">Ukuran</p>
+            <div style="display:flex; gap:0.5rem;">
+              <button style="width:36px; height:36px; border:1px solid var(--color-border); border-radius:4px; font-size:12px; font-weight:500; cursor:pointer; transition:0.3s; background:white;">S</button>
+              <button style="width:36px; height:36px; border:1px solid var(--color-dark-brown); border-radius:4px; font-size:12px; font-weight:500; cursor:pointer; background: var(--color-dark-brown); color:white;">M</button>
+              <button style="width:36px; height:36px; border:1px solid var(--color-border); border-radius:4px; font-size:12px; font-weight:500; cursor:pointer; transition:0.3s; background:white;">L</button>
+              <button style="width:36px; height:36px; border:1px solid var(--color-border); border-radius:4px; font-size:12px; font-weight:500; cursor:pointer; transition:0.3s; background:white;">XL</button>
+            </div>
+          </div>
+
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-num" id="qtyNum">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+
+          <div style="display:flex; gap:0.75rem;">
+            <button onclick="addToCart('p1', 'Cozy Wide Leg Pants', 109000, 'images/cozy-wide-leg-pants.png', 'cozy')" class="btn btn-primary" style="cursor:pointer; border:none; outline:none; font-family:inherit;">Tambahkan ke Keranjang</button>
+            <button class="btn btn-cream">♡ Wishlist</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <div class="newsletter-section">
+    <div class="container">
+      <span class="section-label">Newsletter</span>
+      <h2 style="font-size:1.8rem; margin-bottom: 0.5rem;">Dapatkan Penawaran Eksklusif</h2>
+      <p style="font-size:14px;">Daftarkan emailmu dan jadilah yang pertama tahu koleksi terbaru & promo spesial.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Masukkan alamat emailmu..." />
+        <button>Daftar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Ulasan Pelanggan</span>
+        <h2>Apa Kata Mereka</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Pilihan jadi lebih mudah, tinggal pilih mood dan semua tampil harmonis. Bahan nyaman dan pengiriman super cepat!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="Alya" />
+            </div>
+            <div>
+              <div class="testimonial-name">Alya Safitri</div>
+              <div class="testimonial-role">Pelanggan Setia</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Konsep mood-nya keren banget. Yang biasanya bingung mix & match sekarang jadi lebih percaya diri tampil ke mana saja."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&auto=format&fit=crop&q=80" alt="Amanda" />
+            </div>
+            <div>
+              <div class="testimonial-name">Amanda Laura</div>
+              <div class="testimonial-role">Fashion Enthusiast</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Ukuran dan fit-nya jelas banget, hampir tidak pernah harus retur. Packaging juga sangat estetik dan thoughtful!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="Andi" />
+            </div>
+            <div>
+              <div class="testimonial-name">Andi Juan</div>
+              <div class="testimonial-role">Pelanggan Baru</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== USP STRIP ===== -->
+  <div class="usp-strip">
+    <div class="container">
+      <div class="usp-grid">
+        <div class="usp-item">
+          <div class="usp-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h4>Free Delivery</h4>
+          <p>Gratis ongkir ke seluruh Indonesia</p>
+        </div>
+        <div class="usp-item">
+          <div class="usp-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h4>Pembayaran Mudah</h4>
+          <p>Transfer, e-wallet, COD tersedia</p>
+        </div>
+        <div class="usp-item">
+          <div class="usp-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>Lacak Pesanan</h4>
+          <p>Real-time tracking setiap saat</p>
+        </div>
+        <div class="usp-item">
+          <div class="usp-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h4>Siap Membantu</h4>
+          <p>Customer service responsif 24/7</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">HELIA</div>
+          <p class="footer-desc">Helia Indonesia — fashion berbasis mood untuk ekspresi sehari-hari. Karena pakaian adalah cara termudah bercerita tanpa kata.</p>
+          <div class="footer-socials">
+            <a href="#" title="Instagram">ig</a>
+            <a href="#" title="Facebook">fb</a>
+            <a href="#" title="TikTok">tk</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigasi</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Kategori</h5>
+          <ul>
+            <li><a href="shop.html">Cozy Mood</a></li>
+            <li><a href="shop.html">Bold Mood</a></li>
+            <li><a href="shop.html">Calm Mood</a></li>
+            <li><a href="shop.html">New Arrival</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Newsletter</h5>
+          <p style="font-size:12px; color: rgba(245,240,232,0.6); margin-bottom:1rem;">Daftar untuk update koleksi & promo eksklusif.</p>
+          <div class="footer-newsletter-input">
+            <input type="email" placeholder="Email kamu..." />
+            <button>Daftar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2024 Helia Indonesia. Semua hak dilindungi.</span>
+        <span>Kelompok 1 — Web Design UI/UX</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Nav Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Qty Control
+    let qty = 1;
+    function changeQty(delta) {
+      qty = Math.max(1, qty + delta);
+    }
+  </script>
+  <script src="cart.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

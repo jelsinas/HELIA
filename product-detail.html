@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Produk — HELIA INDONESIA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .product-detail-section {
+      padding: 6rem 0;
+      background-color: var(--color-cream);
+      min-height: calc(100vh - 80px);
+    }
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      background: var(--color-white);
+      padding: 2rem;
+      border: 3px solid var(--color-dark);
+      border-radius: 8px;
+      box-shadow: 6px 6px 0 var(--color-dark);
+    }
+    .product-detail-img-wrap {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 2px solid var(--color-dark);
+    }
+    .product-detail-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-detail-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .pd-mood {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 0.5rem;
+      background: var(--color-cream);
+      padding: 4px 12px;
+      border: 1px solid var(--color-dark);
+      border-radius: 20px;
+      width: fit-content;
+      box-shadow: 2px 2px 0 var(--color-dark);
+    }
+    .pd-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      color: var(--color-dark);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .pd-price {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--color-warm-brown);
+      margin-bottom: 1.5rem;
+    }
+    .pd-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+      border-bottom: 1px dashed var(--color-border);
+      padding-bottom: 2rem;
+    }
+    .pd-selectors {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .pd-selector-group label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .pd-selector-group select {
+      padding: 10px 16px;
+      border: 2px solid var(--color-dark);
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      background: var(--color-white);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .pd-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: auto;
+    }
+    .pd-actions .btn-primary {
+      flex: 1;
+      padding: 1rem;
+      font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+      }
+      .product-detail-img-wrap {
+        height: 400px;
+      }
+      .pd-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">HELIA</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="shop.html" class="nav-icon-btn" title="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count">0</span>
+        </a>
+        <a href="login.html" class="nav-icon-btn" title="Account" id="profileBtn">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="product-detail-section">
+    <div class="container">
+      <div class="product-detail-grid">
+        <div class="product-detail-img-wrap">
+          <img id="pd-img" src="images/cozy-wide-leg-pants.png" alt="Produk" />
+        </div>
+        <div class="product-detail-info">
+          <div class="pd-mood" id="pd-mood">Cozy Mood</div>
+          <h1 class="pd-title" id="pd-title">Memuat Produk...</h1>
+          <div class="pd-price" id="pd-price">Rp0</div>
+          <p class="pd-desc" id="pd-desc">Pakaian dirancang untuk memberikan kenyamanan dan kebebasan berekspresi. Cocok untuk menemani harimu dan menyesuaikan dengan mood-mu hari ini.</p>
+          
+          <div class="pd-selectors">
+            <div class="pd-selector-group">
+              <label>Ukuran</label>
+              <select id="pd-size">
+                <option value="S">Small (S)</option>
+                <option value="M" selected>Medium (M)</option>
+                <option value="L">Large (L)</option>
+                <option value="XL">Extra Large (XL)</option>
+              </select>
+            </div>
+            <div class="pd-selector-group">
+              <label>Warna</label>
+              <select id="pd-color">
+                <option value="Default">Default</option>
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Cream">Cream</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="pd-actions">
+            <button id="pd-add-btn" class="btn-primary" style="cursor:pointer; border:none; outline:none; font-family:inherit;">Tambah ke Keranjang</button>
+            <button class="btn-outline" style="cursor:pointer; padding: 0 1.5rem;"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">HELIA</div>
+          <p class="footer-desc">Helia Indonesia — fashion berbasis mood untuk ekspresi sehari-hari.</p>
+        </div>
+        <div class="footer-col"><h5>Navigasi</h5><ul><li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Helia Indonesia. Semua hak dilindungi.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    // Database produk sederhana
+    const productsDB = {
+      'p1': { id: 'p1', name: 'Cozy Wide Leg Pants', price: 109000, img: 'images/cozy-wide-leg-pants.png', mood: 'cozy' },
+      'p2': { id: 'p2', name: 'Flare Jogger Pants', price: 99000, img: 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?w=500&auto=format&fit=crop&q=80', mood: 'cozy' },
+      'p3': { id: 'p3', name: 'Oversize Zip Pocket', price: 119000, img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=80', mood: 'bold' },
+      'p4': { id: 'p4', name: 'Sailor Collar Knit', price: 139000, img: 'https://images.unsplash.com/photo-1536243298747-ea8874136d64?w=500&auto=format&fit=crop&q=80', mood: 'soft' },
+      'p5': { id: 'p5', name: 'Knit Sweater (Pattern)', price: 129000, img: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=500&auto=format&fit=crop&q=80', mood: 'cozy' },
+      'p6': { id: 'p6', name: 'Contrast Trim Cardigan', price: 99000, img: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=80', mood: 'bold' },
+      'p7': { id: 'p7', name: 'Graphic Wash Sweatshirt', price: 139000, img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=80', mood: 'bold' },
+      'p8': { id: 'p8', name: 'Ruffle Collar Rib Top', price: 89000, img: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500&auto=format&fit=crop&q=80', mood: 'soft' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id') || 'p1'; // Default ke p1 jika tidak ada id
+      
+      const product = productsDB[productId];
+      
+      if (product) {
+        document.getElementById('pd-img').src = product.img;
+        document.getElementById('pd-title').textContent = product.name;
+        document.getElementById('pd-price').textContent = 'Rp' + product.price.toLocaleString('id-ID');
+        document.getElementById('pd-mood').textContent = product.mood.charAt(0).toUpperCase() + product.mood.slice(1) + ' Mood';
+        
+        // Setup tombol tambah ke keranjang
+        document.getElementById('pd-add-btn').onclick = () => {
+          const size = document.getElementById('pd-size').value;
+          const color = document.getElementById('pd-color').value;
+          addToCart(product.id, product.name, product.price, product.img, product.mood, size, color);
+        };
+      } else {
+        document.getElementById('pd-title').textContent = 'Produk tidak ditemukan';
+        document.getElementById('pd-add-btn').disabled = true;
+      }
+    });
+  </script>
+</body>
+</html>

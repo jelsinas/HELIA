@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+.local/
+
+# Environment variables (API keys)
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python fix scripts (not needed in production)
+fix_*.py
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — HELIA INDONESIA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .checkout-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; padding: 2rem 0; }
+    .checkout-form-section { background: var(--color-white); padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-radius: 4px; }
+    .checkout-form-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 1.5rem; letter-spacing: 1px; color: var(--color-dark); }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--color-muted); font-weight: 600; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--color-border); font-family: 'Jost', sans-serif; font-size: 14px; outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--color-dark); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .checkout-summary { background: var(--color-white); padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-radius: 4px; height: fit-content; position: sticky; top: 100px; }
+    .checkout-summary-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 1.5rem; }
+    .checkout-item { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 14px; }
+    @media (max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .checkout-summary { position: static; } }
+  </style>
+  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-MuTrTaa25hn-8XtK"></script>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">HELIA</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="shop.html" class="nav-icon-btn" title="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count" id="cartCount">2</span>
+        </a>
+        <a href="login.html" class="nav-icon-btn" title="Account" id="profileBtn">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADING -->
+  <section class="cart-hero">
+    <p class="section-label">PENGIRIMAN & PEMBAYARAN</p>
+    <h1 class="cart-hero-title">Checkout</h1>
+    <p class="cart-breadcrumb">
+      <a href="index.html">Home</a> &nbsp;/&nbsp;
+      <a href="cart.html">Keranjang</a> &nbsp;/&nbsp;
+      <span>Checkout</span>
+    </p>
+  </section>
+
+  <!-- CART MAIN -->
+  <section class="container" style="padding-bottom: 4rem;">
+    <div class="checkout-grid">
+      <!-- FORM -->
+      <div class="checkout-form-section">
+        <h3>Informasi Pengiriman</h3>
+        <div class="form-group"><label>Nama Lengkap</label><input type="text" placeholder="Masukkan nama Anda..." required /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" placeholder="email@contoh.com" required /></div>
+          <div class="form-group"><label>No. HP</label><input type="tel" placeholder="08..." required /></div>
+        </div>
+        <div class="form-group"><label>Alamat Lengkap</label><textarea rows="3" placeholder="Nama jalan, gedung, no. rumah..." required></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>Provinsi</label><select><option>DKI Jakarta</option><option>Jawa Barat</option><option>Banten</option><option>Jawa Tengah</option><option>DI Yogyakarta</option><option>Jawa Timur</option></select></div>
+          <div class="form-group"><label>Kota/Kabupaten</label><input type="text" placeholder="Contoh: Jakarta Selatan" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Kecamatan</label><input type="text" placeholder="Contoh: Kebayoran Baru" required /></div>
+          <div class="form-group"><label>Kode Pos</label><input type="text" placeholder="12345" required /></div>
+        </div>
+        
+        <h3 style="margin-top: 3rem;">Metode Pembayaran</h3>
+        <div class="form-group">
+          <label style="display:flex; align-items:center; gap: 10px; margin-bottom: 12px; cursor: pointer;">
+            <input type="radio" name="payment" checked style="width:auto;"> Transfer Bank (BCA, Mandiri, BNI)
+          </label>
+          <label style="display:flex; align-items:center; gap: 10px; margin-bottom: 12px; cursor: pointer;">
+            <input type="radio" name="payment" style="width:auto;"> E-Wallet (GoPay, OVO, Dana)
+          </label>
+          <label style="display:flex; align-items:center; gap: 10px; cursor: pointer;">
+            <input type="radio" name="payment" style="width:auto;"> Kartu Kredit
+          </label>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="checkout-summary">
+        <h3 class="checkout-summary-title">Ringkasan Pesanan</h3>
+        
+        <div id="checkout-items-list" style="margin-bottom: 1.5rem;"></div>
+
+        <div style="border-top: 1px solid var(--color-border); padding-top: 1rem;">
+          <div class="summary-row" style="display:flex; justify-content:space-between; margin-bottom: 0.8rem; color: var(--color-muted);">
+            <span>Subtotal</span><span id="checkout-subtotal">Rp0</span>
+          </div>
+          <div class="summary-row" style="display:flex; justify-content:space-between; margin-bottom: 1.5rem; color: var(--color-muted);">
+            <span>Ongkos Kirim</span><span id="checkout-ongkir">Rp0</span>
+          </div>
+          <div class="summary-divider" style="height:1px; background:var(--color-border); margin-bottom:1rem;"></div>
+          <div class="summary-row summary-total" style="display:flex; justify-content:space-between; font-weight:600; font-size:18px; margin-bottom:1.5rem;">
+            <span>Total Bayar</span><span id="checkout-grandtotal">Rp0</span>
+          </div>
+        </div>
+        
+        <button class="btn-primary" style="width:100%; padding: 1rem; font-size: 12px;" onclick="processCheckout()">BUAT PESANAN SEKARANG</button>
+        <div style="text-align:center; margin-top: 1rem;">
+          <a href="cart.html" style="font-size:12px; color:var(--color-muted); text-decoration:none;">← Kembali ke Keranjang</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">HELIA</div>
+          <p class="footer-desc">Helia Indonesia — fashion berbasis mood untuk ekspresi sehari-hari.</p>
+          <div class="footer-socials">
+            <a href="#" title="Instagram">ig</a>
+            <a href="#" title="Facebook">fb</a>
+            <a href="#" title="TikTok">tk</a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Navigasi</h5><ul><li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Kategori</h5><ul><li><a href="shop.html">Cozy Mood</a></li><li><a href="shop.html">Bold Mood</a></li><li><a href="shop.html">Calm Mood</a></li><li><a href="shop.html">New Arrival</a></li></ul></div>
+        <div class="footer-col">
+          <h5>Newsletter</h5>
+          <p style="font-size:12px; color:rgba(245,240,232,0.6); margin-bottom:1rem;">Update koleksi & promo eksklusif.</p>
+          <div class="footer-newsletter-input"><input type="email" placeholder="Email kamu..." /><button>Daftar</button></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Helia Indonesia. Semua hak dilindungi.</span>
+        <span>Kelompok 1 — Web Design UI/UX</span>
+      </div>
+    </div>
+  </footer>
+
+  
+  <script src="cart.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    // ========== RENDER CHECKOUT SUMMARY ==========
+    function renderCheckoutSummary() {
+      const items = getCartItems();
+      const listContainer = document.getElementById('checkout-items-list');
+      
+      if (items.length === 0) {
+        alert('Keranjang belanja kosong!');
+        window.location.href = 'shop.html';
+        return;
+      }
+      
+      listContainer.innerHTML = '';
+      
+      let subtotal = 0;
+      items.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        listContainer.innerHTML += `
+          <div class="checkout-item">
+            <span>${item.name} (x${item.qty})</span>
+            <span>Rp${itemTotal.toLocaleString('id-ID')}</span>
+          </div>
+        `;
+      });
+      
+      const ongkir = subtotal > 0 ? 15000 : 0;
+      const grandTotal = subtotal + ongkir;
+      
+      document.getElementById('checkout-subtotal').textContent = 'Rp' + subtotal.toLocaleString('id-ID');
+      document.getElementById('checkout-ongkir').textContent = 'Rp' + ongkir.toLocaleString('id-ID');
+      document.getElementById('checkout-grandtotal').textContent = 'Rp' + grandTotal.toLocaleString('id-ID');
+    }
+
+    // ========== PROCESS CHECKOUT ==========
+    async function processCheckout() {
+      const checkoutBtn = document.querySelector('.checkout-summary .btn-primary');
+      const originalText = checkoutBtn.textContent;
+
+      // Validasi form
+      const inputs = document.querySelectorAll('.checkout-form-section input[required], .checkout-form-section textarea[required]');
+      let valid = true;
+      let firstInvalid = null;
+      let customer_details = { name: '', email: '', phone: '' };
+
+      inputs.forEach(input => {
+        // Reset styling
+        input.style.borderColor = '';
+        
+        if (!input.value.trim()) {
+          valid = false;
+          input.style.borderColor = '#e74c3c';
+          if (!firstInvalid) firstInvalid = input;
+        }
+        if (input.type === 'email') customer_details.email = input.value.trim();
+        if (input.type === 'tel') customer_details.phone = input.value.trim();
+        if (input.placeholder && input.placeholder.includes('Masukkan nama')) customer_details.name = input.value.trim();
+      });
+
+      if (!valid) {
+        alert('Mohon lengkapi semua informasi pengiriman terlebih dahulu.');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Validasi email format
+      if (customer_details.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer_details.email)) {
+        alert('Format email tidak valid.');
+        return;
+      }
+
+      const items = getCartItems();
+      if (items.length === 0) {
+        alert('Keranjang belanja kosong!');
+        window.location.href = 'shop.html';
+        return;
+      }
+
+      const subtotal = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const ongkir = subtotal > 0 ? 15000 : 0;
+      const total = subtotal + ongkir;
+
+      // Loading state
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'MEMPROSES...';
+      checkoutBtn.style.opacity = '0.7';
+      checkoutBtn.style.cursor = 'wait';
+
+      try {
+        // Cek apakah Snap.js sudah loaded
+        if (typeof window.snap === 'undefined') {
+          throw new Error('Midtrans Snap belum dimuat. Pastikan koneksi internet stabil dan refresh halaman.');
+        }
+
+        // Request token dari server (gunakan relative URL agar sama origin)
+        const response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            total: total,
+            items: items.map(item => ({
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              qty: item.qty
+            })),
+            customer_details: customer_details
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Server error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.token) {
+          // Panggil Midtrans Snap popup
+          window.snap.pay(data.token, {
+            onSuccess: function(result) {
+              console.log('✅ Payment Success:', result);
+              localStorage.removeItem('helia_cart');
+              alert('🎉 Pembayaran berhasil! Terima kasih telah berbelanja di HELIA INDONESIA.');
+              window.location.href = 'index.html';
+            },
+            onPending: function(result) {
+              console.log('⏳ Payment Pending:', result);
+              alert('⏳ Menunggu pembayaranmu! Silakan selesaikan pembayaran sesuai instruksi.');
+            },
+            onError: function(result) {
+              console.error('❌ Payment Error:', result);
+              alert('❌ Pembayaran gagal! Silakan coba lagi.');
+            },
+            onClose: function() {
+              console.log('🔒 Snap popup closed');
+              // Jangan alert yang mengganggu, cukup reset button
+            }
+          });
+        } else {
+          throw new Error(data.error || 'Tidak mendapat token pembayaran dari server.');
+        }
+      } catch (error) {
+        console.error('Checkout Error:', error);
+        alert('⚠️ ' + (error.message || 'Gagal terhubung ke server pembayaran. Pastikan server berjalan.'));
+      } finally {
+        // Reset button state
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = originalText;
+        checkoutBtn.style.opacity = '1';
+        checkoutBtn.style.cursor = 'pointer';
+      }
+    }
+
+    // ========== INIT ==========
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCheckoutSummary();
+
+      // Navbar toggle untuk mobile
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
