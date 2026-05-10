@@ -251,7 +251,7 @@
           throw new Error('Midtrans Snap belum dimuat. Pastikan koneksi internet stabil dan refresh halaman.');
         }
 
-        // Request token dari server (gunakan relative URL agar sama origin)
+        // Request token dari server (gunakan relative URL agar sama origin di Vercel)
         const response = await fetch('/api/checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

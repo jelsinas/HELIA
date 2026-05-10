@@ -175,13 +175,20 @@ app.get('/', (req, res) => {
 
 // ============= START SERVER =============
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log('');
-    console.log('╔══════════════════════════════════════════╗');
-    console.log('║    🛍️  HELIA Indonesia — Server Active    ║');
-    console.log('╠══════════════════════════════════════════╣');
-    console.log(`║  🌐 URL: http://localhost:${PORT}            ║`);
-    console.log(`║  💳 Midtrans: ${IS_PRODUCTION ? 'PRODUCTION' : 'SANDBOX'}              ║`);
-    console.log('╚══════════════════════════════════════════╝');
-    console.log('');
-});
+
+// Vercel serverless functions environment check
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log('');
+        console.log('╔══════════════════════════════════════════╗');
+        console.log('║    🛍️  HELIA Indonesia — Server Active    ║');
+        console.log('╠══════════════════════════════════════════╣');
+        console.log(`║  🌐 URL: http://localhost:${PORT}            ║`);
+        console.log(`║  💳 Midtrans: ${IS_PRODUCTION ? 'PRODUCTION' : 'SANDBOX'}              ║`);
+        console.log('╚══════════════════════════════════════════╝');
+        console.log('');
+    });
+}
+
+// Export for Vercel Serverless
+module.exports = app;
