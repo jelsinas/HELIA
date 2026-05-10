@@ -18,3 +18,5 @@ fix_*.py
 *~
 .vscode/
 .idea/
+.vercel
+.env*.local
